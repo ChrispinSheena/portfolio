@@ -1,10 +1,22 @@
 import { useState } from "react";
 import Nav from "react-bootstrap/Nav";
+import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot, TimelineOppositeContent } from '@mui/lab';
+import { Typography } from '@mui/material'
 
 export default function Projects() {
   const [activeTab, setActiveTab] = useState("experience");
 
   const projects = [
+    {
+      title: "AI Chatbot for Banking",
+      period: "Feb 2025 – Apr 2025",
+      description: "RAG chatbot using Flowise, LangChain, Pinecone, and OpenAI API.",
+    },
+    {
+      title: "Marine Debris Detection (YOLOv8)",
+      period: "Jan 2025 – Apr 2025",
+      description: "AI-powered detection system with Streamlit frontend.",
+    },
     {
       title: "Personal Finance Management App",
       period: "Aug 2024 – Oct 2024",
@@ -20,16 +32,7 @@ export default function Projects() {
       period: "Oct 2023",
       description: "JavaScript extension with Flask API for detecting fraudulent activity.",
     },
-    {
-      title: "Marine Debris Detection (YOLOv8)",
-      period: "Feb 2025 – Apr 2025",
-      description: "AI-powered detection system with Streamlit frontend.",
-    },
-    {
-      title: "AI Chatbot for Banking",
-      period: "Feb 2025 – Apr 2025",
-      description: "RAG chatbot using Flowise, LangChain, Pinecone, and OpenAI API.",
-    },
+
   ];
 
   const education = [
@@ -43,13 +46,13 @@ export default function Projects() {
       school: "Christuraja Matriculation Higher Secondary School",
       degree: "HSC",
       year: "2021",
-      grade: "87.66%"
+      grade: "Percentage: 87.66%"
     },
     {
       school: "Christuraja Matriculation Higher Secondary School",
       degree: "SSLC",
       year: "2019",
-      grade: "83%"
+      grade: "Percentage: 83%"
     }
   ];
 
@@ -67,27 +70,45 @@ export default function Projects() {
         onSelect={(selectedKey) => setActiveTab(selectedKey)}
         className="mb-4"
       >
+      
         <Nav.Item>
           <Nav.Link eventKey="experience">EXPERIENCE</Nav.Link>
         </Nav.Item>
-
+        
         <Nav.Item>
           <Nav.Link eventKey="education">EDUCATION</Nav.Link>
         </Nav.Item>
+        
       </Nav>
 
       {/* EXPERIENCE (PROJECTS LIST) */}
       {activeTab === "experience" && (
         <div className="row g-4 mt-2">
           {projects.map((project, index) => (
-            <div className="col-md-6" key={index}>
-              <div className="card shadow-sm h-100">
-                <div className="card-body">
-                  <h5 className="card-title fw-semibold">{project.title}</h5>
-                  <h6 className="text-muted">{project.period}</h6>
-                  <p className="card-text mt-2">{project.description}</p>
-                </div>
-              </div>
+            <div key={index}>
+
+              <Timeline>
+                <TimelineItem>
+                  <TimelineOppositeContent sx={{ m: 'auto 0' }}
+                    align="right"
+                    variant="body2"
+                    color="text.secondary">
+                    {project.period}
+                  </TimelineOppositeContent>
+                  <TimelineSeparator>
+                    <TimelineConnector />
+                    <TimelineDot />
+                    <TimelineConnector />
+                  </TimelineSeparator>
+                  <TimelineContent sx={{ py: '12px', px: 2 }}>
+                    <Typography variant="h6" component="span">
+                      {project.title}
+                    </Typography>
+                    <Typography>{project.description}</Typography>
+                  </TimelineContent>
+                </TimelineItem>
+              </Timeline>
+
             </div>
           ))}
         </div>
@@ -97,18 +118,38 @@ export default function Projects() {
       {activeTab === "education" && (
         <div className="mt-4">
           {education.map((edu, index) => (
-            <div className="card shadow-sm mb-3" key={index}>
-              <div className="card-body">
-                <h5 className="fw-semibold">{edu.school}</h5>
-                <p className="mb-1"><strong>Degree:</strong> {edu.degree}</p>
-                <p className="mb-1"><strong>Year:</strong> {edu.year}</p>
-                <p className="mb-1"><strong>Grade:</strong> {edu.grade}</p>
-              </div>
+            <div  key={index}>
+              <Timeline>
+                <TimelineItem>
+                  <TimelineOppositeContent sx={{ m: 'auto 0' }}
+                    align="right"
+                    variant="body2"
+                    color="text.secondary">
+                    <Typography>{edu.year}</Typography>
+                    <Typography>{edu.grade}</Typography>
+                  </TimelineOppositeContent>
+                  
+                  <TimelineSeparator>
+                    <TimelineConnector />
+                    <TimelineDot />
+                    <TimelineConnector />
+                  </TimelineSeparator>
+                  <TimelineContent sx={{ py: '12px', px: 2 }}>
+                    <Typography variant="h6" component="span">
+                      {edu.school}
+                    </Typography>
+                    <Typography>{edu.degree}</Typography>
+                  </TimelineContent>
+                </TimelineItem>
+              </Timeline>
+              
             </div>
           ))}
         </div>
       )}
+      
 
     </section>
   );
 }
+

@@ -1,0 +1,72 @@
+/* BASE STYLES */
+body {
+  padding-top: 70px; /* height of navbar */
+  background: #f2f2f2;
+  color: #222;
+  position: relative;
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Pseudo-element for background animation */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity 0.5s ease;
+}
+
+
+
+/* DARK MODE */
+body.dark {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+/* DARK MODE SPARKLES */
+body.dark::before {
+  background-image:
+    radial-gradient(circle, rgb(143, 142, 142) 2px, transparent 2px),
+    radial-gradient(circle, rgb(182, 179, 179) 2px, transparent 2px);
+  background-size: 40px 40px, 60px 60px;
+  background-position: 0 0, 10px 20px;
+  opacity: 0.25;
+  animation: sparkleMove 3s linear infinite;
+}
+
+/* DARK MODE KEYFRAMES */
+@keyframes sparkleMove {
+  0% { background-position: 0 0, 10px 20px; }
+  100% { background-position: 40px 40px, 50px 60px; }
+}
+
+/* TEXT & LINKS */
+body.dark h1, body.dark h2, body.dark h3 { color: #ffffff; }
+body.dark p { color: #e0e0e0; }
+body.dark a { color: #1e90ff; transition: color 0.3s ease; }
+body.dark a:hover { color: #63b3ed; }
+
+/* Navbar dark mode */
+body.dark .navbar { background: #1f1f1f !important; }
+body.dark .navbar .nav-link { color: #ffffff !important; }
+
+/* Buttons dark mode */
+body.dark .btn-primary {
+  background-color: #1e90ff;
+  color: #ffffff;
+  border: none;
+}
+body.dark .btn-primary:hover { background-color: #aee5f9; }
+
+body.dark .btn-outline-dark {
+  background-color: #1e90ff;
+  color: #ffffff;
+  border: none;
+}
+body.dark .btn-outline-dark:hover { background-color: #85b0c0; }

@@ -1,0 +1,39 @@
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Sparkle layer */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  
+  background-image:
+    radial-gradient(circle, rgba(164, 212, 236, 0.6) 2px, transparent 5px),
+    radial-gradient(circle, rgba(146, 171, 180, 0.4) 2px, transparent 5px);
+  
+  background-size: 40px 40px, 60px 60px;
+  background-position: 0 0, 10px 20px;
+  
+  pointer-events: none;
+  opacity: 0;     
+  transition: opacity 0.3s ease;
+}
+
+body::before {
+  opacity: 0.8;
+  animation: sparkleMove 3s linear infinite;
+}
+
+@keyframes sparkleMove {
+  0% {
+    background-position: 0 0, 10px 20px;
+  }
+  100% {
+    background-position: 40px 40px, 50px 60px;
+  }
+}
